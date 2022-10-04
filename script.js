@@ -3,6 +3,8 @@ const cellArray = []
 const cellIdCount = 0
 const miner = document.querySelector('.miner')
 const minerMining = document.querySelector('.minerMining')
+let keySCount = 1
+let keyDnACount = 1
 
 const createCell = (cell) => {
   for (i = 0; i < cell; i++) {
@@ -23,12 +25,21 @@ const animateMiner = (event) => {
   } else if (event.code == 'KeyS') {
     miner.style.transform = 'rotate(90deg)'
     minerMining.style.transform = 'rotate(90deg)'
+    keySCount += 1
+    miner.style.gridRowStart = keySCount
+    minerMining.style.gridRowStart = keySCount
   } else if (event.code == 'KeyD') {
     miner.style.transform = 'rotate(360deg)'
     minerMining.style.transform = 'rotate(360deg)'
+    keyDnACount += 1
+    miner.style.gridColumnStart = keyDnACount
+    minerMining.style.gridColumnStart = keyDnACount
   } else if (event.code == 'KeyA') {
     miner.style.transform = 'scaleX(-1)'
     minerMining.style.transform = 'scaleX(-1)'
+    keyDnACount -= 1
+    miner.style.gridColumnStart = keyDnACount
+    minerMining.style.gridColumnStart = keyDnACount
   }
 }
 
