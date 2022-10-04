@@ -19,7 +19,16 @@ const animateMiner = (event) => {
       miner.style.display = 'block'
       minerMining.style.display = 'none'
     }
-    setTimeout(revertDisplay, 125)
+    setTimeout(revertDisplay, 137)
+  } else if (event.code == 'KeyS') {
+    miner.style.transform = 'rotate(90deg)'
+    minerMining.style.transform = 'rotate(90deg)'
+  } else if (event.code == 'KeyD') {
+    miner.style.transform = 'rotate(360deg)'
+    minerMining.style.transform = 'rotate(360deg)'
+  } else if (event.code == 'KeyA') {
+    miner.style.transform = 'scaleX(-1)'
+    minerMining.style.transform = 'scaleX(-1)'
   }
 }
 
