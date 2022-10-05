@@ -1,4 +1,4 @@
-.score{
+/* .score{
   width: 180px;
   height: 45px;
   background-color: #FEE440;
@@ -7,7 +7,7 @@
   font-size: x-large;
   padding-top: 15px;
   padding-left: 5px;
-}
+} */
 .container{
   display: grid;
   grid-template-columns:repeat(15, 1fr);

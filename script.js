@@ -10,7 +10,18 @@ let pointingUp = false
 let pointingRight = true
 let pointingDown = false
 let pointingLeft = false
+let downCount = 0
 
+const randomGold = (min, max) => {
+  let gold = Math.floor(Math.random() * (max - min + 1)) + min
+  console.log(gold)
+  document.getElementById(`${gold}`).style.backgroundColor = 'gold'
+  document.getElementById(`${gold + 1}`).style.backgroundColor = 'gold'
+  document.getElementById(`${gold + 2}`).style.backgroundColor = 'gold'
+  document.getElementById(`${gold + 14}`).style.backgroundColor = 'gold'
+  document.getElementById(`${gold + 15}`).style.backgroundColor = 'gold'
+  document.getElementById(`${gold + 16}`).style.backgroundColor = 'gold'
+}
 const createCell = (cell) => {
   for (i = 0; i < cell; i++) {
     const div = document.createElement('div')
@@ -87,11 +98,26 @@ const mining = (event) => {
       '#00f5d4'
     document.getElementById(`${currentLocation - 1}`).classList.add('minedCell')
   } else if (event.code === 'KeyM' && pointingDown === true) {
-    document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
-      '#00f5d4'
-    document
-      .getElementById(`${currentLocation + 14}`)
-      .classList.add('minedCell')
+    if (downCount > 0) {
+      document.getElementById(`${currentLocation + 15}`).style.backgroundColor =
+        '#00f5d4'
+      document
+        .getElementById(`${currentLocation + 15}`)
+        .classList.add('minedCell')
+      downCount += 1
+    } else {
+      document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
+        '#00f5d4'
+      document
+        .getElementById(`${currentLocation + 14}`)
+        .classList.add('minedCell')
+      downCount += 1
+    }
+    // document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
+    //   '#00f5d4'
+    // document
+    //   .getElementById(`${currentLocation + 14}`)
+    //   .classList.add('minedCell')
   } else if (event.code === 'KeyM' && pointingUp === true) {
     document.getElementById(`${currentLocation - 14}`).style.backgroundColor =
       '#00f5d4'
@@ -128,12 +154,29 @@ const movingMinerDown = (event) => {
     currentLocation += 14
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
+  } else if (
+    event.code === 'KeyS' &&
+    document.getElementById(`${currentLocation + 15}`).className ===
+      'cell minedCell'
+  ) {
+    console.log('hi')
+    keySCount += 1
+    keyDnACount += 1
+    document.getElementById(`${currentLocation + 1}`).style.backgroundColor =
+      '#00f5d4'
+    document.getElementById(`${currentLocation + 15}`).style.backgroundColor =
+      '#9b5de5'
+    currentLocation += 16
+    miner.style.gridRowStart = keySCount
+    minerMining.style.gridRowStart = keySCount
+    downCount -= 2
   }
 }
-
 document.addEventListener('keydown', movingMinerRight)
-document.addEventListener('keydown', movingMinerDown)
-
 document.addEventListener('keydown', mining)
-createCell(749)
+
+document.addEventListener('keydown', movingMinerDown)
 document.addEventListener('keydown', animateMiner)
+
+createCell(749)
+randomGold(642, 748)
