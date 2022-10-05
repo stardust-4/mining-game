@@ -125,7 +125,7 @@ const movingMinerDown = (event) => {
       '#00f5d4'
     document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
       '#9b5de5'
-    currentLocation += 15
+    currentLocation += 14
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
   }
