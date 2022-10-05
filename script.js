@@ -5,6 +5,7 @@ const miner = document.querySelector('.miner')
 const minerMining = document.querySelector('.minerMining')
 let keySCount = 1
 let keyDnACount = 1
+let currentLocation = 0
 
 const createCell = (cell) => {
   for (i = 0; i < cell; i++) {
@@ -25,18 +26,21 @@ const animateMiner = (event) => {
     }
     setTimeout(revertDisplay, 137)
   } else if (event.code == 'KeyS') {
+    currentLocation += 15
     miner.style.transform = 'rotate(90deg)'
     minerMining.style.transform = 'rotate(90deg)'
     keySCount += 1
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
   } else if (event.code == 'KeyD') {
+    currentLocation += 1
     miner.style.transform = 'rotate(360deg)'
     minerMining.style.transform = 'rotate(360deg)'
     keyDnACount += 1
     miner.style.gridColumnStart = keyDnACount
     minerMining.style.gridColumnStart = keyDnACount
   } else if (event.code == 'KeyA') {
+    currentLocation -= 1
     miner.style.transform = 'scaleX(-1)'
     minerMining.style.transform = 'scaleX(-1)'
     keyDnACount -= 1
@@ -45,6 +49,7 @@ const animateMiner = (event) => {
   }
   //allows miner to go up
   else if (event.code == 'KeyW') {
+    currentLocation -= 15
     miner.style.transform = 'rotate(-90deg)'
     minerMining.style.transform = 'rotate(-90deg)'
     keySCount -= 1
@@ -52,6 +57,12 @@ const animateMiner = (event) => {
     minerMining.style.gridRowStart = keySCount
   }
 }
+const mining = (event) => {
+  if (event.code == 'KeyM') {
+    document.getElementById(`${currentLocation}`).style.backgroundColor = 'red'
+  }
+}
 
+document.addEventListener('keydown', mining)
 createCell(749)
 document.addEventListener('keydown', animateMiner)
