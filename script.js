@@ -1,6 +1,6 @@
 const container = document.querySelector('.container')
 const cellArray = []
-const cellIdCount = 0
+let cellIdCount = -1
 const miner = document.querySelector('.miner')
 const minerMining = document.querySelector('.minerMining')
 let keySCount = 1
@@ -11,6 +11,8 @@ const createCell = (cell) => {
     const div = document.createElement('div')
     container.appendChild(div).className = 'cell'
     cellArray.push(div)
+    cellIdCount += 1
+    container.appendChild(div).id = `${cellIdCount}`
   }
 }
 const animateMiner = (event) => {
@@ -41,18 +43,15 @@ const animateMiner = (event) => {
     miner.style.gridColumnStart = keyDnACount
     minerMining.style.gridColumnStart = keyDnACount
   }
+  //allows miner to go up
+  else if (event.code == 'KeyW') {
+    miner.style.transform = 'rotate(-90deg)'
+    minerMining.style.transform = 'rotate(-90deg)'
+    keySCount -= 1
+    miner.style.gridRowStart = keySCount
+    minerMining.style.gridRowStart = keySCount
+  }
 }
 
 createCell(749)
 document.addEventListener('keydown', animateMiner)
-
-// const assignId = () => {
-//   cellArray.forEach((cell) => {
-//     cellIdCount += 1
-//   })
-//   console.log(cellIdCount)
-// }
-// console.log(cellArray)
-// cellArray[0].id = '0'
-
-// assignId()
