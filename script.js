@@ -97,7 +97,19 @@ const animateMiner = (event) => {
 }
 const mining = (event) => {
   //vicotry right
-  //victory up
+  if (
+    event.code === 'KeyM' &&
+    document.getElementById(`${currentLocation}`).className === 'cell gold'
+  ) {
+    console.log('youWin')
+  }
+  //victory left
+  // if (
+  //   event.code === 'KeyM' &&
+  //   document.getElementById(`${currentLocation - 1}`).className === 'cell gold'
+  // ) {
+  //   console.log('youWin')
+  // }
   //vicotry down
   if (
     event.code === 'KeyM' &&
@@ -114,14 +126,14 @@ const mining = (event) => {
       '#00f5d4'
     document.getElementById(`${currentLocation - 1}`).classList.add('minedCell')
   } else if (event.code === 'KeyM' && pointingDown === true) {
-    if (downCount > 0) {
+    if (downCount === 1) {
       document.getElementById(`${currentLocation + 15}`).style.backgroundColor =
         '#00f5d4'
       document
         .getElementById(`${currentLocation + 15}`)
         .classList.add('minedCell')
-      downCount += 1
-    } else {
+      // downCount -= 1
+    } else if (downCount === 0) {
       document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
         '#00f5d4'
       document
@@ -129,12 +141,9 @@ const mining = (event) => {
         .classList.add('minedCell')
       downCount += 1
     }
-    // document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
-    //   '#00f5d4'
-    // document
-    //   .getElementById(`${currentLocation + 14}`)
-    //   .classList.add('minedCell')
-  } else if (event.code === 'KeyM' && pointingUp === true) {
+  }
+  // downCount -= 1
+  else if (event.code === 'KeyM' && pointingUp === true) {
     document.getElementById(`${currentLocation - 14}`).style.backgroundColor =
       '#00f5d4'
     document
@@ -152,6 +161,7 @@ const movingMinerRight = (event) => {
     currentLocation += 1
     miner.style.gridColumnStart = keyDnACount
     minerMining.style.gridColumnStart = keyDnACount
+    downCount = 0
   }
 }
 const movingMinerDown = (event) => {
@@ -160,7 +170,7 @@ const movingMinerDown = (event) => {
     document.getElementById(`${currentLocation + 14}`).className ===
       'cell minedCell'
   ) {
-    // console.log('hi')
+    console.log('hi')
     keySCount += 1
     keyDnACount -= 1
     document.getElementById(`${currentLocation}`).style.backgroundColor =
@@ -175,20 +185,33 @@ const movingMinerDown = (event) => {
     document.getElementById(`${currentLocation + 15}`).className ===
       'cell minedCell'
   ) {
-    // console.log('hi')
+    //   // console.log('hi')
     keySCount += 1
-    keyDnACount += 1
+    //   keyDnACount += 1
     document.getElementById(`${currentLocation + 1}`).style.backgroundColor =
       '#00f5d4'
     document.getElementById(`${currentLocation + 15}`).style.backgroundColor =
       '#9b5de5'
-    currentLocation += 16
+    currentLocation += 15
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
-    downCount -= 2
+    // downCount - 1
   }
 }
-// const detectVictory = (event) => {}
+// const movingMinerLeft = (event) => {
+//   if (
+//     event.code === 'KeyD' &&
+//     document.getElementById(`${currentLocation - 1}`).className ===
+//       'cell minedCell'
+//   ) {
+//     // console.log('hi')
+//     keyDnACount -= 1
+//     currentLocation -= 1
+//     miner.style.gridColumnStart = keyDnACount
+//     minerMining.style.gridColumnStart = keyDnACount
+//   }
+
+// document.addEventListener('keydown', movingMinerLeft)
 document.addEventListener('keydown', movingMinerRight)
 document.addEventListener('keydown', mining)
 // document.addEventListener('keydown', detectVictory)
