@@ -14,6 +14,13 @@ let downCount = 0
 const touchingGold = false
 let leftCount = 0
 let lastMoveWasToTheRight = false
+let bright = 100
+
+const mineSong = (event) => {
+  if (event) {
+    document.getElementById('my_audio').play()
+  }
+}
 
 const randomGold = (min, max) => {
   let gold = Math.floor(Math.random() * (max - min + 1)) + min
@@ -31,6 +38,18 @@ const randomGold = (min, max) => {
   document.getElementById(`${gold + 16}`).style.backgroundColor = 'gold'
   document.getElementById(`${gold + 16}`).classList.add('gold')
 }
+const randomCoal = (min, max) => {
+  let coal = Math.floor(Math.random() * (max - min + 1)) + min
+  console.log(coal)
+  document.getElementById(`${coal}`).style.backgroundColor = '#36454F'
+  document.getElementById(`${coal}`).classList.add('coal')
+  document.getElementById(`${coal + 13}`).style.backgroundColor = '#36454F'
+  document.getElementById(`${coal + 13}`).classList.add('coal')
+  document.getElementById(`${coal - 40}`).style.backgroundColor = '#36454F'
+  document.getElementById(`${coal - 40}`).classList.add('coal')
+  document.getElementById(`${coal + 50}`).style.backgroundColor = '#36454F'
+  document.getElementById(`${coal + 50}`).classList.add('coal')
+}
 const createCell = (cell) => {
   for (i = 0; i < cell; i++) {
     const div = document.createElement('div')
@@ -42,6 +61,8 @@ const createCell = (cell) => {
 }
 const animateMiner = (event) => {
   if (event.code == 'KeyM') {
+    bright -= 1.5
+    container.style.filter = `brightness(${bright}%)`
     miner.style.display = 'none'
     minerMining.style.display = 'block'
     const revertDisplay = () => {
@@ -56,10 +77,6 @@ const animateMiner = (event) => {
     pointingUp = false
     miner.style.transform = 'rotate(90deg)'
     minerMining.style.transform = 'rotate(90deg)'
-    // keySCount += 1
-    // currentLocation +=15
-    // miner.style.gridRowStart = keySCount
-    // minerMining.style.gridRowStart = keySCount
   } else if (event.code == 'KeyD') {
     pointingLeft = false
     pointingRight = true
@@ -67,10 +84,6 @@ const animateMiner = (event) => {
     pointingUp = false
     miner.style.transform = 'rotate(360deg)'
     minerMining.style.transform = 'rotate(360deg)'
-    // keyDnACount += 1
-    // currentLocation += 1
-    // miner.style.gridColumnStart = keyDnACount
-    // minerMining.style.gridColumnStart = keyDnACount
   } else if (event.code == 'KeyA') {
     pointingLeft = true
     pointingRight = false
@@ -78,10 +91,6 @@ const animateMiner = (event) => {
     pointingUp = false
     miner.style.transform = 'scaleX(-1)'
     minerMining.style.transform = 'scaleX(-1)'
-    // keyDnACount -= 1
-    // currentLocation -= 1
-    // miner.style.gridColumnStart = keyDnACount
-    // minerMining.style.gridColumnStart = keyDnACount
   }
   //allows miner to go up
   else if (event.code == 'KeyW') {
@@ -91,13 +100,30 @@ const animateMiner = (event) => {
     pointingUp = true
     miner.style.transform = 'rotate(-90deg)'
     minerMining.style.transform = 'rotate(-90deg)'
-    // keySCount -= 1
-    // currentLocation -= 15
-    // miner.style.gridRowStart = keySCount
-    // minerMining.style.gridRowStart = keySCount
   }
 }
 const mining = (event) => {
+  //get coal left
+  // if (
+  //   event.code === 'KeyM' &&
+  //   document.getElementById(`${currentLocation - 1}`).className === 'cell coal'
+  // ) {
+  //   bright += 10
+  // }
+  //get coal right
+  if (
+    event.code === 'KeyM' &&
+    document.getElementById(`${currentLocation}`).className === 'cell coal'
+  ) {
+    bright += 10
+  }
+  //get coal down
+  if (
+    event.code === 'KeyM' &&
+    document.getElementById(`${currentLocation + 15}`).className === 'cell coal'
+  ) {
+    bright += 10
+  }
   //vicotry right
   if (
     event.code === 'KeyM' &&
@@ -272,6 +298,7 @@ document.addEventListener('keydown', movingMinerRight)
 document.addEventListener('keydown', mining)
 document.addEventListener('keydown', movingMinerDown)
 document.addEventListener('keydown', animateMiner)
-
+document.addEventListener('keydown', mineSong)
 createCell(749)
-randomGold(642, 748)
+randomGold(622, 740)
+randomCoal(350, 611)
