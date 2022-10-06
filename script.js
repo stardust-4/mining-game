@@ -13,6 +13,7 @@ let pointingLeft = false
 let downCount = 0
 const touchingGold = false
 let leftCount = 0
+let lastMoveWasToTheRight = false
 
 const randomGold = (min, max) => {
   let gold = Math.floor(Math.random() * (max - min + 1)) + min
@@ -159,11 +160,19 @@ const mining = (event) => {
   }
   // downCount -= 1
   else if (event.code === 'KeyM' && pointingUp === true) {
-    document.getElementById(`${currentLocation - 14}`).style.backgroundColor =
-      '#00f5d4'
-    document
-      .getElementById(`${currentLocation - 14}`)
-      .classList.add('minedCell')
+    if (lastMoveWasToTheRight === true) {
+      document.getElementById(`${currentLocation - 15}`).style.backgroundColor =
+        '#00f5d4'
+      document
+        .getElementById(`${currentLocation - 15}`)
+        .classList.add('minedCell')
+    } else {
+      document.getElementById(`${currentLocation - 14}`).style.backgroundColor =
+        '#00f5d4'
+      document
+        .getElementById(`${currentLocation - 14}`)
+        .classList.add('minedCell')
+    }
   }
 }
 const movingMinerRight = (event) => {
@@ -177,6 +186,7 @@ const movingMinerRight = (event) => {
     miner.style.gridColumnStart = keyDnACount
     minerMining.style.gridColumnStart = keyDnACount
     downCount = 0
+    lastMoveWasToTheRight = true
   } else if (
     event.code === 'KeyA' &&
     document.getElementById(`${currentLocation - 1}`).className ===
@@ -189,6 +199,7 @@ const movingMinerRight = (event) => {
     keyDnACount -= 1
     currentLocation -= 1
     leftCount += 1
+    lastMoveWasToTheRight = false
   }
 }
 const movingMinerDown = (event) => {
@@ -207,6 +218,7 @@ const movingMinerDown = (event) => {
     currentLocation += 14
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
+    lastMoveWasToTheRight = false
   } else if (
     event.code === 'KeyS' &&
     document.getElementById(`${currentLocation + 15}`).className ===
@@ -222,7 +234,24 @@ const movingMinerDown = (event) => {
     currentLocation += 15
     miner.style.gridRowStart = keySCount
     minerMining.style.gridRowStart = keySCount
-    // downCount - 1
+    lastMoveWasToTheRight = false
+  }
+  // MOVING MINER UP
+  else if (
+    event.code === 'KeyW' &&
+    document.getElementById(`${currentLocation - 14}`).className ===
+      'cell minedCell'
+  ) {
+    console.log('movingMinerUp Synced')
+    // keySCount += 1
+    // keyDnACount -= 1
+    // document.getElementById(`${currentLocation}`).style.backgroundColor =
+    //   '#00f5d4'
+    // document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
+    //   '#9b5de5'
+    // currentLocation += 14
+    // miner.style.gridRowStart = keySCount
+    // minerMining.style.gridRowStart = keySCount
   }
 }
 
