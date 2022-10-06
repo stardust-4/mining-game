@@ -15,10 +15,18 @@ const touchingGold = false
 let leftCount = 0
 let lastMoveWasToTheRight = false
 let bright = 100
+let songOn = false
 
 const mineSong = (event) => {
-  if (event) {
+  if (event.code === 'KeyX' && songOn === false) {
     document.getElementById('my_audio').play()
+    songOn = true
+  }
+}
+const stopSong = (event) => {
+  if (event.code === 'KeyZ' && songOn === true) {
+    document.getElementById('my_audio').pause()
+    songOn = false
   }
 }
 
@@ -61,7 +69,7 @@ const createCell = (cell) => {
 }
 const animateMiner = (event) => {
   if (event.code == 'KeyM') {
-    bright -= 1.5
+    bright -= 2
     container.style.filter = `brightness(${bright}%)`
     miner.style.display = 'none'
     minerMining.style.display = 'block'
@@ -129,7 +137,7 @@ const mining = (event) => {
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation}`).className === 'cell gold'
   ) {
-    console.log('youWin')
+    alert('You Win!')
   }
   //victory left
   // if (
@@ -144,6 +152,8 @@ const mining = (event) => {
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation + 14}`).className === 'cell gold'
   ) {
+    alert('You Win!')
+
     console.log('youWin')
   }
   if (event.code === 'KeyM' && pointingRight === true) {
@@ -299,6 +309,7 @@ document.addEventListener('keydown', mining)
 document.addEventListener('keydown', movingMinerDown)
 document.addEventListener('keydown', animateMiner)
 document.addEventListener('keydown', mineSong)
+document.addEventListener('keydown', stopSong)
 createCell(749)
 randomGold(622, 740)
 randomCoal(350, 611)
