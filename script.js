@@ -157,9 +157,7 @@ const mining = (event) => {
         .classList.add('minedCell')
       downCount += 1
     }
-  }
-  // downCount -= 1
-  else if (event.code === 'KeyM' && pointingUp === true) {
+  } else if (event.code === 'KeyM' && pointingUp === true) {
     if (lastMoveWasToTheRight === true) {
       document.getElementById(`${currentLocation - 15}`).style.backgroundColor =
         '#00f5d4'
