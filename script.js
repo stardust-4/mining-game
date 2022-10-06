@@ -241,15 +241,30 @@ const movingMinerDown = (event) => {
       'cell minedCell'
   ) {
     console.log('movingMinerUp Synced')
-    // keySCount += 1
-    // keyDnACount -= 1
-    // document.getElementById(`${currentLocation}`).style.backgroundColor =
-    //   '#00f5d4'
-    // document.getElementById(`${currentLocation + 14}`).style.backgroundColor =
-    //   '#9b5de5'
-    // currentLocation += 14
-    // miner.style.gridRowStart = keySCount
-    // minerMining.style.gridRowStart = keySCount
+    keySCount -= 1
+    // keyDnACount += 1
+    document.getElementById(`${currentLocation}`).style.backgroundColor =
+      '#00f5d4'
+    document.getElementById(`${currentLocation - 14}`).style.backgroundColor =
+      '#9b5de5'
+    currentLocation -= 14
+    miner.style.gridRowStart = keySCount
+    minerMining.style.gridRowStart = keySCount
+  } else if (
+    event.code === 'KeyW' &&
+    document.getElementById(`${currentLocation - 15}`).className ===
+      'cell minedCell'
+  ) {
+    console.log('minerightup sync')
+    keySCount -= 1
+    // keyDnACount += 1
+    document.getElementById(`${currentLocation}`).style.backgroundColor =
+      '#00f5d4'
+    document.getElementById(`${currentLocation - 15}`).style.backgroundColor =
+      '#9b5de5'
+    currentLocation -= 15
+    miner.style.gridRowStart = keySCount
+    minerMining.style.gridRowStart = keySCount
   }
 }
 
