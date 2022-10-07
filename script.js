@@ -31,6 +31,9 @@ const mineSong = (event) => {
     document.getElementById('my_audio').play()
     songOn = true
   }
+  if (event.code === 'KeyR') {
+    window.location.reload()
+  }
 }
 const stopSong = (event) => {
   if (event.code === 'KeyZ' && songOn === true) {
