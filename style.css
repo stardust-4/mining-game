@@ -9,6 +9,7 @@
   padding-left: 5px;
   display: none;
 } */
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 .container{
   display: grid;
   grid-template-columns:repeat(15, 1fr);
@@ -32,7 +33,18 @@
 body {
 background-color:#f15bb5;
 }
-
+p {font-size:large}
+.rules { 
+  padding-top: 40px;
+  padding-left: 40px;
+  font-family: 'Silkscreen', cursive;
+font-size: 30px;
+  margin-top: 40px;
+  margin-left: 40px;
+  width: 500px;
+height: 550px;
+background-color: #FEE440;
+color: #9B5DE5;}
 .miner {
   background: url('miner.png') no-repeat -102px -10px;
 	width: 19px;
@@ -53,7 +65,45 @@ background-color:#f15bb5;
   margin-top: 10px;
   display: none;
 }
+.button {
+  border-radius: 4px;
+  background-color: #00BBF9;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  font-family: 'Silkscreen', cursive;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-left: 600px;
+  margin-top: -850px;
+}
 
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
 
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
 
