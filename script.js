@@ -17,6 +17,12 @@ let lastMoveWasToTheRight = false
 let bright = 100
 let songOn = false
 
+const detectLoss = () => {
+  if (bright === -2) {
+    alert('game over')
+  }
+}
+
 const mineSong = (event) => {
   if (event.code === 'KeyX' && songOn === false) {
     document.getElementById('my_audio').play()
@@ -119,6 +125,7 @@ const mining = (event) => {
   //   bright += 10
   // }
   //get coal right
+  detectLoss()
   if (
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation}`).className === 'cell coal'
