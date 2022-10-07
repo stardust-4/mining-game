@@ -106,5 +106,13 @@ color: #9B5DE5;}
   right: 0;
 }
 
-
+.btn { 
+  margin-top: 800px;
+  margin-left: 275px;
+  width: 500px;
+  height: 500px;
+  position: fixed;
+  z-index: 100%;
+  display: none;
+}
 

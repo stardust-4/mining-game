@@ -19,6 +19,9 @@ let songOn = false
 
 const detectLoss = () => {
   if (bright === -2) {
+    document.getElementById('my_audio').pause()
+    songOn = false
+    document.getElementById('loses_audio').play()
     alert('game over')
   }
 }
@@ -144,6 +147,9 @@ const mining = (event) => {
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation}`).className === 'cell gold'
   ) {
+    document.getElementById('my_audio').pause()
+    songOn = false
+    document.getElementById('wins_audio').play()
     alert('You Win! ')
   }
   //victory left
@@ -159,9 +165,10 @@ const mining = (event) => {
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation + 14}`).className === 'cell gold'
   ) {
+    document.getElementById('my_audio').pause()
+    songOn = false
+    document.getElementById('wins_audio').play()
     alert('You Win!')
-
-    console.log('youWin')
   }
   if (event.code === 'KeyM' && pointingRight === true) {
     document.getElementById(`${currentLocation}`).style.backgroundColor =
