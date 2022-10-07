@@ -137,7 +137,7 @@ const mining = (event) => {
     event.code === 'KeyM' &&
     document.getElementById(`${currentLocation}`).className === 'cell gold'
   ) {
-    alert('You Win!')
+    alert('You Win! ')
   }
   //victory left
   // if (
