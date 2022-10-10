@@ -54,6 +54,22 @@
 
 ##### Minecraft was a big inspiration ! ![Image](https://www.familyzone.com/hubfs/Minecraft.jpg)
 
+### **_Key Features_**
+
+##### A themesong plays on loop, it can be toggled on and off.
+
+##### A unique sound is played to signify game loss.
+
+##### A player loses by being stuck in darkness for more than two moves.
+
+##### Each step a player takes, lowers his visibility in the cave using the filter css method
+
+##### Animation of miner is done using setTimeout to change images from display block to display none.
+
+##### An easter egg song is played when vicotory is attained!
+
+##### Map is created using a for loop of createElement('div)
+
 ### **_Future Updates_**
 
 - [ ] Miner avatar will be customizable
