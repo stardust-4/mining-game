@@ -4,7 +4,7 @@
 
 ### By: John Boyle
 
-### [YouTube](https://www.youtube.com/watch?v=GHk33gqBM1c&list=RDGHk33gqBM1c&start_radio=1) [Facebook](https://www.facebook.com) [GitHub](https://github.com/stardust-4/) [Trello](https://trello.com/b/F20ywln7/mining-game)[Surge](mining-game.surge.sh)
+### [YouTube](https://www.youtube.com/watch?v=GHk33gqBM1c&list=RDGHk33gqBM1c&start_radio=1) [Facebook](https://www.facebook.com) [GitHub](https://github.com/stardust-4/) [Trello](https://trello.com/b/F20ywln7/mining-game) [Surge](mining-game.surge.sh)
 
 2d mining game
 #Resources http://www.spritecow.com/ https://coolors.co/ https://craftpix.net/
