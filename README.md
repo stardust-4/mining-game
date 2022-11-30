@@ -10,7 +10,7 @@
 #Resources http://www.spritecow.com/ https://coolors.co/ https://craftpix.net/
 
 
-[live](mining-game.surge.sh)
+##### for mining game, copy and paste this => mining-game.surge.sh
 ---
 
 ### **_Description_**
